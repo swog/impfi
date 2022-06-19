@@ -294,6 +294,7 @@ int main( int argc, char **argv )
 	std::ostringstream oss2;
 	int importCount = 0;
 	int numResults = 0;
+	long SizeInBytes;
 
 	for ( const auto& dirEntry : std::filesystem::directory_iterator( pszDirectory ) )
 	{
@@ -361,7 +362,11 @@ int main( int argc, char **argv )
 		// If there are any imports, name the path, then list the imports
 		if ( importCount )
 		{
-			oss2 << numResults++ << " - " << Path << ", " << importCount << " import(s) found\n";
+			rewind( f );
+			fseek( f, 0, SEEK_END );
+			SizeInBytes = ftell( f );
+
+			oss2 << numResults++ << " - " << Path << " (" << SizeInBytes / 1024.f << " kb)" << ", " << importCount << " import(s) found\n";
 			oss2 << oss.str();
 			std::cout << oss2.str();
 		}
