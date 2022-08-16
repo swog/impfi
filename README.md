@@ -8,4 +8,4 @@ Uses - Finding drivers that create driver objects, given the import IoCreateDevi
 ## example
 The following command will list driver files with the .sys extension that import either IoCreatedevice or ZwOpenProcess.
 
-impfi "C:\\Windows\\System32\\drivers" .sys IoCreateDevice ZwOpenProcess
+`impfi "C:\\Windows\\System32\\drivers" .sys IoCreateDevice ZwOpenProcess`
